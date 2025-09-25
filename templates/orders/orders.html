@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Orders</title>
+    <style>
+        body { font-family: Arial; background:#f4f6f7; padding:20px; }
+        table { width:100%; border-collapse:collapse; margin-top:20px; }
+        th, td { border:1px solid #ccc; padding:10px; text-align:left; }
+        th { background:#2c3e50; color:white; }
+        tr:hover { background:#f1f1f1; }
+        a { text-decoration: none; color: #2980b9; }
+    </style>
+</head>
+<body>
+    <h2>view orders</h2>
+
+    {% if orders %}
+    <table>
+        <tr><th>OrderID</th><th>Product</th><th>Quantity</th><th>Date</th></tr>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.OrderID }}</td>
+            <td>{{ order.product.Name if order.product else 'Deleted' }}</td>
+            <td>{{ order.Quantity }}</td>
+            <td>{{ order.OrderDate.strftime("%Y-%m-%d %H:%M") }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>You have not placed any orders yet.</p>
+    {% endif %}
+
+    <br><a href="{{ url_for('users.dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

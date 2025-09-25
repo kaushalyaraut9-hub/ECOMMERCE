@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Products</title>
+    <style>
+        body { font-family: Arial; background: #f4f6f7; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 10px; border: 1px solid #ccc; text-align: left; }
+        th { background: #2c3e50; color: white; }
+        input, button { padding: 5px; margin: 3px; border-radius: 5px; border: 1px solid #ccc; }
+        button { background: #2980b9; color: white; border: none; cursor: pointer; }
+        button:hover { background: #1a5276; }
+    </style>
+</head>
+<body>
+    <h2>Manage My Products</h2>
+
+    <form method="POST">
+        <input type="text" name="name" placeholder="Product Name" required>
+        <input type="number" name="price" placeholder="Price" step="0.01" required>
+        <input type="number" name="stock" placeholder="Stock" required>
+        <button type="submit">Add Product</button>
+    </form>
+    <!-- Existing products -->
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Price (₹)</th>
+            <th>Stock</th>
+            <th>Action</th>
+        </tr>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.Name }}</td>
+            <td>{{ product.Price }}</td>
+            <td>{{ product.Stock }}</td>
+            <td>
+                <!-- Inline update form -->
+                <form class="inline" action="{{ url_for('products.update_product', product_id=product.ProductID) }}" method="POST">
+                    <input type="text" name="name" value="{{ product.Name }}">
+                    <input type="number" name="price" value="{{ product.Price }}" step="0.01">
+                    <input type="number" name="stock" value="{{ product.Stock }}">
+                    <button type="submit">Update</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="{{ url_for('users.dashboard') }}">Back to Dashboard</a>
+</body>
+</html>
+
+    

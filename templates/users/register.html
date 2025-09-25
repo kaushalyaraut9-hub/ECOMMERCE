@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            width: 350px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        input:focus, select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 15px;
+            color: #555;
+        }
+
+        p a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        p a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST" action="{{ url_for('users.register') }}">
+        <h2>User Registration</h2>
+
+        <label>Username:</label>
+        <input type="text" name="username" required tabindex="1">
+
+        <label>Password:</label>
+        <input type="password" name="password" required tabindex="2">
+
+        <label>Email:</label>
+        <input type="email" name="email" required tabindex="3">
+
+        <label>Role:</label>
+        <select name="role" required tabindex="4">
+            <option value="">Select role</option>
+            <option value="Customer">Customer</option>
+            <option value="Seller">Seller</option>
+            <option value="Admin">Admin</option>
+        </select>
+
+        <button type="submit" tabindex="5">Register</button>
+
+        <p>Already registered? <a href="{{ url_for('users.login') }}">Login here</a></p>
+    </form>
+</body>
+</html>
